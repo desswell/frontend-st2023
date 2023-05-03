@@ -1,0 +1,18 @@
+.bottom-display {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0 0 0;
+    gap: 10px;
+    width: 100%;
+    height: 105px;
+    background: #484848;
+    margin: 0;
+    color: white;
+    position: fixed;
+    left: 0; bottom: 0;
+}
+.bottom-display a {
+    text-align: center;
+}

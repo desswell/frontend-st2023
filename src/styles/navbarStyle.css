@@ -42,13 +42,14 @@
         font-family: 'Ubuntu Condensed', sans-serif;
         letter-spacing: 2px;
         position: relative;
-        margin: 0 110px 0 30px;
+        margin: 0 150px 0 100px;
         font-size: 17px;
         text-transform: uppercase;
         transition: color .2s;
     }
 .navbar-links a:last-child {
     margin-left: auto;
+    margin-right: 25px;
 }
 
     .navbar-links a, .navbar-links a:visited {

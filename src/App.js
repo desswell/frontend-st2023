@@ -1,10 +1,11 @@
 import React from 'react'
-import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom'
-import {NavigationBar} from "./navbar and bottom/navbar";
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { NavigationBar } from "./navbar and bottom/navbar";
 import MainPage from "./pages/mainPage";
 import './styles/navbarStyle.css'
 import './styles/container_css.css'
 import './styles/sighIn.css'
+import './styles/card-services.css'
 import {Bottom} from "./navbar and bottom/bottom";
 import {SighIn} from "./pages/sighIn";
 import {SighUp} from "./pages/sighUp";

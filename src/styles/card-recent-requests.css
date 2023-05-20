@@ -1,0 +1,72 @@
+.main-card-requests {
+    position: absolute;
+    display: flex;
+    left: 100px;
+    top: 196px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.text-main {
+    position: absolute;
+    width: 204px;
+    height: 28px;
+    left: 41px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    color: #FFFFFF;
+}
+.main-card-requests-background-accept {
+    background: #EDF7ED;
+}
+.main-card-requests-background-consideration {
+    background: #E5F6FD;
+}
+.main-card-requests-background-discard {
+    background: #FDEDED;
+}
+.main-card-requests-cards {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 621px;
+    height: 207px;
+    border: 1px solid rgba(0, 0, 0, 0.87);
+    border-radius: 30px;
+    margin-right: 200px;
+    margin-top: 100px;
+}
+.main-card-requests-title {
+    width: 552px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 1px;
+    align-self: stretch;
+    margin-left: 50px;
+}
+.main-card-requests-title-accept {
+    color: #1E4620;
+}
+.main-card-requests-title-consideration {
+    color: #014361;
+}
+.main-card-requests-title-discard {
+    color: rgba(95, 33, 32, 0.87);
+}
+.main-card-requests-icon-accept {
+    margin-right: 30px;
+    font-size: 30px;
+    color: #1E4620;
+}
+.main-card-requests-icon-consideration {
+    margin-right: 30px;
+    font-size: 30px;
+    color: #014361;
+}
+.main-card-requests-icon-discard {
+    margin-right: 30px;
+    font-size: 30px;
+    color: rgba(95, 33, 32, 0.87);
+}

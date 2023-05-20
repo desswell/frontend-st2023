@@ -16,7 +16,7 @@ export default function MainPage(){
 
     return(
         <div >
-            <ul className='main-card-services'>
+            <ul className='main-card-requests'>
                 <p className="text-main">Недавние заявки</p>
                 { data.map((data) => <RecentRequests Props={data} key={data.id} />) }
             </ul>

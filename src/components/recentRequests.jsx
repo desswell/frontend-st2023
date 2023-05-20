@@ -9,24 +9,24 @@ export function RecentRequests(Props){
     const [icon, setIcon] = useState('')
     useEffect( () => {
         if (Props.Props.status === 'accepted') {
-            setBackground_colors('main-card-services-background-accept')
-            setColorText('main-card-services-title main-card-services-title-accept')
+            setBackground_colors('main-card-requests-background-accept')
+            setColorText('main-card-requests-title main-card-requests-title-accept')
             setDescription('Ваша заявка одобрена, Вы можете подъехать в банк для оформления договора.')
-            setIcon('bi bi-check-circle main-card-services-icon-accept')
+            setIcon('bi bi-check-circle main-card-requests-icon-accept')
         } else if (Props.Props.status === 'consideration') {
-            setBackground_colors('main-card-services-background-consideration')
-            setColorText('main-card-services-title main-card-services-title-consideration')
+            setBackground_colors('main-card-requests-background-consideration')
+            setColorText('main-card-requests-title main-card-requests-title-consideration')
             setDescription('Ваша заявка находится на стадии рассмотрения, пожалуйста, подождите.')
-            setIcon('bi bi-info-circle main-card-services-icon-consideration')
+            setIcon('bi bi-info-circle main-card-requests-icon-consideration')
         } else if (Props.Props.status === 'discard') {
-            setBackground_colors('main-card-services-background-discard')
-            setColorText('main-card-services-title main-card-services-title-discard')
+            setBackground_colors('main-card-requests-background-discard')
+            setColorText('main-card-requests-title main-card-requests-title-discard')
             setDescription('Ваша заявка отклонина')
-            setIcon('bi bi-x-octagon main-card-services-icon-discard')
+            setIcon('bi bi-x-octagon main-card-requests-icon-discard')
         }
     }, [Props]
 )
-    const background_color = ['main-card-services-cards', background_colors]
+    const background_color = ['main-card-requests-cards', background_colors]
     return(
         <div className={background_color.join(' ')}
              onClick={() => navigate(`/profile/myRequests/${Props.Props.id}`)}>

@@ -8,6 +8,7 @@ import './styles/sighIn.css'
 import './styles/card-recent-requests.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './styles/card-serveses-all.css'
+import './styles/definiteService.css'
 import {Bottom} from "./navbar and bottom/bottom";
 import {SighIn} from "./pages/sighIn";
 import {SighUp} from "./pages/sighUp";

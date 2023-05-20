@@ -1,0 +1,14 @@
+.definiteService-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    position: absolute;
+    width: 100%;
+    left: auto;
+    top: calc(50% - 72px/2 - 331px);
+    color: #FFFFFF;
+    font-size: 32px;
+    line-height: 24px;
+}

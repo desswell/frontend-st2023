@@ -9,12 +9,14 @@ import './styles/card-recent-requests.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './styles/card-serveses-all.css'
 import './styles/definiteService.css'
+import './styles/profile.css'
 import {Bottom} from "./navbar and bottom/bottom";
 import {SighIn} from "./pages/sighIn";
 import {SighUp} from "./pages/sighUp";
 import {Rediracting} from "./pages/rediracting";
 import { ServicesPage } from "./pages/servicesPage";
 import {DefiniteServicePage} from "./pages/definiteServicePage";
+import {Profile} from "./pages/Profile";
 
 
 function App(){
@@ -28,6 +30,7 @@ function App(){
             <Route exact path='/sighUp' element={<SighUp/>} />
             <Route exact path='/services' element={<ServicesPage/>}/>
             <Route exact path='/services/:id' element={<DefiniteServicePage/>}/>
+            <Route exact path='/profile/' element={<Profile/>}/>
         </Routes>
           <Bottom/>
       </BrowserRouter>

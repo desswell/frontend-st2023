@@ -12,3 +12,115 @@
     font-size: 32px;
     line-height: 24px;
 }
+.definiteService-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 100px 16px;
+
+    position: absolute;
+    width: 40%;
+
+    left: 76px;
+    top: 400px;
+
+    background: #484848;
+    border-radius: 30px;
+    letter-spacing: 1px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.87);
+}
+.definiteService-input-con {
+    display: flex;
+    align-items: flex-start;
+    padding: 0;
+    gap: 20px;
+    flex-flow: column wrap;
+    position: absolute;
+    width: 386px;
+    left: 65%;
+    top: 420px;
+}
+.definiteService-input-con-label {
+    background: #484848;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 450px;
+    height: auto;
+}
+.definiteService-input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    width: auto;
+    height: 41px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    background: transparent;
+    border-radius: 5px;
+    border-color: transparent;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 16px;
+}
+.definiteService-input::placeholder{
+    color: rgba(255, 255, 255, 0.66);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+.definiteService-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.definiteService-input-description {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.66);
+}
+.definiteService-input-checkbox {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.87)
+}
+.definiteService-input-checkbox:required{
+
+}
+.definiteService-input-checkbox-text {
+    flex-direction: row;
+}
+.definiteService-button {
+    border-color: transparent;
+    background: #484848;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 36px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.definiteService-button:active {
+    background: #aaaaaa;
+}
+
+

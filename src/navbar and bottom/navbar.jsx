@@ -11,7 +11,7 @@ export function NavigationBar(){
                 <Link to='/main'><ReactLogo/> Заявки ГосУслуги</Link>
                 <Link to='/main'>Главная</Link>
                 <Link to='/services'>Услуги</Link>
-                <Link to='/profile'>Профиль</Link>
+                <Link to='/profile/'>Профиль</Link>
                 <Link to='/notification'><ReactBell/></Link>
             </ul>
                 </div>

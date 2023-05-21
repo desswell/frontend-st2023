@@ -1,25 +1,27 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {RecentRequests} from "../components/recentRequests";
-const data = [
-    {
-        title: '«Ипотека на полвека»',
-        id: 1,
-        status: 'accepted',
-    },
-    {
-        title: '«Запись к врачу»',
-        id: 2,
-        status: 'consideration'
-    }
-]
-export default function MainPage(){
+import {useUserData} from "../store_redux/slices/services";
 
+export default function MainPage(){
+    const [data, setData] = useState()
+    const userData = useUserData()
+    const id = userData[0].id
+    useEffect(() => {
+        fetch(`http://127.0.0.1:8000/zayavkipolz/?id_user=${id}`,{method : "GET"})
+            .then((res) => res.json())
+            .then((data) => {
+                    setData(data)
+                }
+            );
+    }, [setData])
     return(
-        <div >
-            <ul className='main-card-requests'>
-                <p className="text-main">Недавние заявки</p>
-                { data.map((data) => <RecentRequests Props={data} key={data.id} />) }
-            </ul>
+        <div>
+            {data && <div>
+                <ul className='main-card-requests'>
+                    <p className="text-main">Недавние заявки</p>
+                    {data.map((data) => <RecentRequests Props={data} key={data.id}/>)}
+                </ul>
+            </div>}
         </div>
     )
 }

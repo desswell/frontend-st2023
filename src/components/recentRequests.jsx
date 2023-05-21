@@ -11,7 +11,7 @@ export function RecentRequests(Props){
         if (Props.Props.status === 'accepted') {
             setBackground_colors('main-card-requests-background-accept')
             setColorText('main-card-requests-title main-card-requests-title-accept')
-            setDescription('Ваша заявка одобрена, Вы можете подъехать в банк для оформления договора.')
+            setDescription('Ваша заявка одобрена')
             setIcon('bi bi-check-circle main-card-requests-icon-accept')
         } else if (Props.Props.status === 'consideration') {
             setBackground_colors('main-card-requests-background-consideration')
@@ -21,18 +21,27 @@ export function RecentRequests(Props){
         } else if (Props.Props.status === 'discard') {
             setBackground_colors('main-card-requests-background-discard')
             setColorText('main-card-requests-title main-card-requests-title-discard')
-            setDescription('Ваша заявка отклонина')
+            setDescription('Ваша заявка отклонена')
             setIcon('bi bi-x-octagon main-card-requests-icon-discard')
         }
     }, [Props]
 )
     const background_color = ['main-card-requests-cards', background_colors]
+    const [data, setData] = useState('')
+    useEffect(() => {
+        fetch(`http://127.0.0.1:8000/uslugi/${Props.Props.id_service}`,{method : "GET"})
+            .then((res) => res.json())
+            .then((data) => {
+                setData(data)
+                }
+            );
+    }, [setData])
     return(
         <div className={background_color.join(' ')}
              onClick={() => navigate(`/profile/myRequests/${Props.Props.id}`)}>
                 <p className={ colorText }>
                     <span className={icon}></span>
-                    Заявка на услугу: {Props.Props.title}</p>
+                    Заявка на услугу: {data.name}</p>
                 <p className={ colorText }> { description } </p>
         </div>
     )

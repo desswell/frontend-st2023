@@ -19,7 +19,7 @@
     padding: 100px 16px;
 
     position: absolute;
-    width: 40%;
+    width: 30%;
 
     left: 76px;
     top: 400px;
@@ -122,5 +122,12 @@
 .definiteService-button:active {
     background: #aaaaaa;
 }
-
+.definiteService-status {
+    color: #0788D1;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+}
 

@@ -5,15 +5,14 @@ export function SighUp(){
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
     const [againPassword, setAgainPassword] = useState('')
-    const [name, setName] = useState('')
     const [wrongPassword, setWrongPassword] = useState(false)
     const navigate = useNavigate()
     const HandleClick = () => {
         if (againPassword === password) {
             setWrongPassword(false)
-            fetch('http://127.0.0.1:8000/api/user/create', {
+            fetch('/api/create', {
                 method: "POST",
-                body: JSON.stringify({username: login, password: password, name: name})
+                body: JSON.stringify({username: login, password: password})
             })
                 .then((res) => res.json())
                 .then((data) => {
@@ -36,7 +35,6 @@ export function SighUp(){
                 <input onChange={(event) => setLogin(event.target.value)} placeholder='Логин' type="text" className='InputField' />
                 <input onChange={(event) => setPassword(event.target.value)} placeholder='Пароль' type="password" className='InputField' />
                 <input onChange={(event) => setAgainPassword(event.target.value)} placeholder='Еще раз пароль' type="password" className='InputField' />
-                <input onChange={(event) => setName(event.target.value)} placeholder='ФИО' type="text" className='InputField' />
                 {wrongPassword && <div className="error_password">Пароли не совпадают</div>}
                 <button className='buttonStyle'  onClick={HandleClick}>Зарегистрироваться</button>
                 <div className="text2wrapper">

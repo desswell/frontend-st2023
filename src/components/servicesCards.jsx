@@ -9,7 +9,7 @@ export function ServicesCards(Props){
             navigate(`/services/${Props.Props.id}`)
         }}>
             <p className='available-cards-text main-card-requests-title available-cards-text-title'>
-                {Props.Props.title}
+                {Props.Props.name}
             </p>
             <p className='available-cards-text main-card-requests-title '>
                 {Props.Props.description}

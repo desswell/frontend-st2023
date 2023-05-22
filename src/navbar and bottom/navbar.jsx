@@ -5,9 +5,15 @@ import {ReactComponent as ReactBell} from "../img/bell.svg";
 
 export function NavigationBar(){
     const [login, setLogin] = useState('')
+    const [isAdmin, setIsAdmin] = useState(false)
     useEffect(() => {
         setLogin(localStorage.getItem('login'))
-    }, [])
+    }, [setLogin])
+    useEffect(() => {
+        if (login === 'admin'){
+            setIsAdmin(true)
+        }
+    }, [login])
     return(
         <div className="р-100 h-50 ">
             <div className='navbar-container'>
@@ -17,6 +23,9 @@ export function NavigationBar(){
                         <Link to='/main'>Главная</Link>
                         <Link to='/services'>Услуги</Link>
                         <Link to='/profile/'>Профиль</Link>
+                        {isAdmin &&
+                            <Link to='/allRequests'>Все заявки</Link>
+                        }
                         <Link to='/notification'><ReactBell/></Link>
                     </div>}
                 </ul>

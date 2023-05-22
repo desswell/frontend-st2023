@@ -10,6 +10,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './styles/card-serveses-all.css'
 import './styles/definiteService.css'
 import './styles/profile.css'
+import './styles/addingServices.css'
 import {Bottom} from "./navbar and bottom/bottom";
 import {SighIn} from "./pages/sighIn";
 import {SighUp} from "./pages/sighUp";
@@ -17,18 +18,32 @@ import {Rediracting} from "./pages/rediracting";
 import { ServicesPage } from "./pages/servicesPage";
 import {DefiniteServicePage} from "./pages/definiteServicePage";
 import {Profile} from "./pages/Profile";
-import { MyRequestsPage } from "./pages/MyRequests";
+import { MyRequestsPage } from "./pages/MyRequestsPage";
 import {MyRequestStatus} from "./pages/MyRequestStatus";
-import {setUserDataAction, useUserData} from "./store_redux/slices/services";
+import {setNotificationAction, setUserDataAction, useUserData} from "./store_redux/slices/services";
 import axios from "axios";
 import {useDispatch} from "react-redux";
+import {AllRequests} from "./pages/allRequests";
+import {AllRequestsDefinitePage} from "./pages/allRequestsDefinitePage";
+import {AddServicesPage} from "./pages/addServicesPage";
+let websocket = new WebSocket('ws://localhost:5001/websockets')
 
+websocket.onopen = () => {
+    console.log('success')
+}
 
 function App(){
+    const [notification, setNotification] = useState([])
+    websocket.onmessage = function(event) {
+        setNotification(event.data)
+    };
     const userData = useUserData()
     const login = localStorage.getItem('login')
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false)
+    useEffect(() => {
+        dispatch(setNotificationAction(notification))
+    }, [notification])
     useEffect(() => {
         if (userData.length === 0 && login){
             axios.get(`http://127.0.0.1:8000/polzovateli/?username=${login}`).then(r => {
@@ -39,10 +54,11 @@ function App(){
             setLoading(true)
         }
     }, [])
+
   return(
       <div>
           {loading && <BrowserRouter basename='/'>
-              <NavigationBar/>
+              {login && <NavigationBar/>}
               <Routes>
                   <Route exact path='/' element={<Rediracting/>}/>
                   <Route exact path="/main" element={<MainPage/>}/>
@@ -50,9 +66,12 @@ function App(){
                   <Route exact path='/sighUp' element={<SighUp/>}/>
                   <Route exact path='/services' element={<ServicesPage/>}/>
                   <Route exact path='/services/:id' element={<DefiniteServicePage/>}/>
+                  <Route exact path='/services/add' element={<AddServicesPage/>}/>
                   <Route exact path='/profile/' element={<Profile/>}/>
                   <Route exact path='/profile/myrequests' element={<MyRequestsPage/>}/>
                   <Route exact path='/profile/myrequests/:id' element={<MyRequestStatus/>}/>
+                  <Route exact path='/allrequests' element={<AllRequests/>}/>
+                  <Route exact path='/AllRequestsDefinitePage/:id' element={<AllRequestsDefinitePage/>}/>
               </Routes>
               <Bottom/>
           </BrowserRouter>}

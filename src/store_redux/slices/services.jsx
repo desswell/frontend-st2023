@@ -7,6 +7,7 @@ const servicesSlice = createSlice({
     initialState: {
         Data: [],
         userData: [],
+        Notification: []
     },
     reducers: {
         setData(state, {payload}) {
@@ -14,6 +15,12 @@ const servicesSlice = createSlice({
         },
         setId(state, {payload}) {
             state.userData = payload
+        },
+        setNotification(state, {payload}) {
+            state.Notification = payload
+        },
+        delNotification(state) {
+            state.Notification = []
         }
     }
 })
@@ -22,10 +29,15 @@ export const useData = () =>
     useSelector((state) => state.services.Data)
 export const useUserData = () =>
     useSelector((state) => state.services.userData)
+export const useNotification = () =>
+    useSelector((state) => state.services.Notification)
+
 
 export const {
     setData: setDataAction,
     setId: setUserDataAction,
+    setNotification: setNotificationAction,
+    delNotification: delNotificationAction
 } = servicesSlice.actions
 
 

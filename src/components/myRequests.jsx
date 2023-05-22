@@ -20,13 +20,12 @@ export function MyRequests(Props){
             setStatus('В рассмотрении')
         }
     }, [setRequest])
-
     return(
         <div>
             {request && <div className=''
                   onClick={() => navigate(`/profile/myRequests/${Props.Props.id}`)}>
                 <p className='profile-requests-text'>
-                    Заявка на услугу: {request.name}. Статус - { status }</p>
+                    №Заявки - {Props.Props.id}. Заявка на услугу: {request.name}. Статус - { status }</p>
             </div>}
         </div>
     )

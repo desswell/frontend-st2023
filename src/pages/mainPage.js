@@ -19,7 +19,7 @@ export default function MainPage(){
             {data && <div>
                 <ul className='main-card-requests'>
                     <p className="text-main">Недавние заявки</p>
-                    {data.map((data) => <RecentRequests Props={data} key={data.id}/>)}
+                    { data.map((data) => <RecentRequests Props={data} key={data.id}/>) }
                 </ul>
             </div>}
         </div>

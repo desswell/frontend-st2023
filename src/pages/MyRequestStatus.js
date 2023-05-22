@@ -6,24 +6,29 @@ import {useUserData} from "../store_redux/slices/services";
 export function MyRequestStatus() {
     const params = useParams()
     const [data, setData] = useState()
-    const userData = useUserData()
-    const id = userData[0].id
+    const userData = useUserData()[0]
+    const empty = 0
     const [status, setStatus] = useState('')
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         async function fetchService () {
-            await axios.get(`http://127.0.0.1:8000/zayavkipolz/?id_user=${id}&id_service=${params.id}`).then((resp) => {
+            await axios.get(`http://127.0.0.1:8000/zayavkipolz/${params.id}`).then((resp) => {
                 setStatus(resp.data)
-            })
-            await axios.get(`http://127.0.0.1:8000/uslugi/${params.id}`).then((resp) => {
-                setData(resp.data)
             })
         }
         fetchService().then(() => {
-            setLoading(false)
+
         })
     }, [setData])
-
+    useEffect(() => {
+        if (status) {
+            axios.get(`http://127.0.0.1:8000/uslugi/${status.id_service}`).then((resp) => {
+                setData(resp.data)
+            }).then(() => {
+                setLoading(false)
+            })
+        }
+    }, [status])
     return(<div>
             { !loading && <div>
                 <p className="definiteService-title">
@@ -34,19 +39,19 @@ export function MyRequestStatus() {
                 </p>
                 <form className='definiteService-input-con'>
                     <label className='definiteService-input-con-label'>
-                        <input type='number' value={123} className='definiteService-input'/>
+                        <input type='text' value={userData.passport !== null ? userData.passport : empty} className='definiteService-input'/>
                         <span className='definiteService-input-description'>
                           Серия и номер паспорта
                     </span>
                     </label>
                     <label className='definiteService-input-con-label'>
-                        <input type='number' value={123} className='definiteService-input'/>
+                        <input type='text' value={userData.snils !== null ? userData.snils : empty} className='definiteService-input'/>
                         <span className='definiteService-input-description'>
                          СНИЛС
                     </span>
                     </label>
                     <label className='definiteService-status'>
-                        Статус - { status[0].status === 'accepted' ? 'Принята' : status[0].status === 'discard' ? 'Отклонена' : 'В рассмотрении' }
+                        Статус - { status.status === 'accepted' ? 'Принята' : status.status === 'discard' ? 'Отклонена' : 'В рассмотрении' }
                     </label>
                 </form>
             </div>

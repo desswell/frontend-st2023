@@ -1,18 +1,21 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import {useDispatch} from "react-redux";
 import axios from "axios";
 import { setUserDataAction } from "../store_redux/slices/services";
+
 export function SighIn(){
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate()
     const [flag, setFlag] = useState(false)
     const dispatch = useDispatch()
-    const check_login = localStorage.getItem('login')
-    if (check_login) {
-        navigate('/main')
-    }
+    useEffect(() => {
+        const check_login = localStorage.getItem('login')
+        if (check_login) {
+            navigate('/main')
+        }
+    }, [])
     const HandleClick = () => {
         fetch('api/authorize',{method : "post",
             headers: {

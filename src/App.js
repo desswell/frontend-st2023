@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom'
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import { NavigationBar } from "./navbar and bottom/navbar";
 import MainPage from "./pages/mainPage";
 import './styles/navbarStyle.css'
@@ -11,6 +11,7 @@ import './styles/card-serveses-all.css'
 import './styles/definiteService.css'
 import './styles/profile.css'
 import './styles/addingServices.css'
+import 'react-toastify/dist/ReactToastify.css';
 import {Bottom} from "./navbar and bottom/bottom";
 import {SighIn} from "./pages/sighIn";
 import {SighUp} from "./pages/sighUp";
@@ -20,30 +21,30 @@ import {DefiniteServicePage} from "./pages/definiteServicePage";
 import {Profile} from "./pages/Profile";
 import { MyRequestsPage } from "./pages/MyRequestsPage";
 import {MyRequestStatus} from "./pages/MyRequestStatus";
-import {setNotificationAction, setUserDataAction, useUserData} from "./store_redux/slices/services";
+import { setUserDataAction, useUserData} from "./store_redux/slices/services";
 import axios from "axios";
 import {useDispatch} from "react-redux";
 import {AllRequests} from "./pages/allRequests";
 import {AllRequestsDefinitePage} from "./pages/allRequestsDefinitePage";
 import {AddServicesPage} from "./pages/addServicesPage";
-let websocket = new WebSocket('ws://localhost:5001/websockets')
-
-websocket.onopen = () => {
-    console.log('success')
-}
+import { ToastContainer, toast } from 'react-toastify';
+let websocket = new WebSocket('ws://localhost:9000/websockets')
 
 function App(){
-    const [notification, setNotification] = useState([])
-    websocket.onmessage = function(event) {
-        setNotification(event.data)
-    };
+    const [notification, setNotification] = useState('')
     const userData = useUserData()
     const login = localStorage.getItem('login')
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false)
     useEffect(() => {
-        dispatch(setNotificationAction(notification))
-    }, [notification])
+        if (login) {
+            websocket.onopen = () => {
+                websocket.send(JSON.stringify({
+                    "login": login
+                }))
+            }
+        }
+    }, [login])
     useEffect(() => {
         if (userData.length === 0 && login){
             axios.get(`http://127.0.0.1:8000/polzovateli/?username=${login}`).then(r => {
@@ -54,9 +55,14 @@ function App(){
             setLoading(true)
         }
     }, [])
-
+    websocket.onmessage =  function(event) {
+        setNotification(event.data)
+        toast('Статус заявки изменился!');
+        console.log(notification)
+    };
   return(
       <div>
+          <ToastContainer/>
           {loading && <BrowserRouter basename='/'>
               {login && <NavigationBar/>}
               <Routes>

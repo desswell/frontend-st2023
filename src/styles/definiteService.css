@@ -70,6 +70,11 @@
     color: rgba(255, 255, 255, 0.66);
     font-size: 16px;
 }
+.definiteService-input-plus {
+    background: #484848;
+    border-color: transparent;
+    outline: none;
+}
 .definiteService-input::placeholder{
     color: rgba(255, 255, 255, 0.66);
     font-style: normal;
@@ -130,4 +135,6 @@
     align-items: center;
     letter-spacing: 1px;
 }
-
+.definiteService-button-plus {
+    margin-top: 20px;
+}
